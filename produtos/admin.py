@@ -1,4 +1,6 @@
 from django.contrib import admin
-from . import models
+from .models import Equipe
 
-admin.site.register(models.Pessoas)
+@admin.register(Equipe)
+class EquipeAdmin(admin.ModelAdmin):
+    list_display = ['nome', 'profissao', 'registro_profissional']
