@@ -28,10 +28,10 @@
             <li>
               <a class="nav-link active" href="#">home</a>
             </li>
-            <li><a class="nav-link" href="../pages/videos.html">vídeos</a></li>
-            <li><a class="nav-link" href="../pages/forum.html">fórum</a></li>
+            <li><a class="nav-link" href="{% url 'videos' %}">vídeos</a></li>
+            <li><a class="nav-link" href="{% url 'forum' %}">fórum</a></li>
             <li>
-              <a class="nav-link" href="../pages/pais_profs.html">pais & profs</a>
+              <a class="nav-link" href="{% url 'pais_profs' %}">pais&profs</a></a>
             </li>
           </ul>
           <div class="select_home"></div>
@@ -57,13 +57,13 @@
 
     <!--LEGENDA DO BANNER-->
         <div class="legenda_banner_home">
-        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Velit incidunt minus non porro quasi earum vel alias quis iure voluptatum, blanditiis odit beatae quibusdam nulla asperiores ex magni in mollitia!</p>
-
-        <button class="Btn_Legenda">Saber mais
-                                    <img src="{% static 'assets/img/icon_Buttons/Setting2.svg' %}" class="icon_btn_Legenda"/>
-        </button>
-        </div>
-    </section>
+          <p>{{ legenda_banner.texto }}</p>
+  
+          <button class="Btn_Legenda">Saber mais
+                                      <img src="{% static '/img/icon_Buttons/Setting2.svg' %}" class="icon_btn_Legenda"/>
+          </button>
+          </div>
+      </section>
 
     <!--SEÇÃO NOSSAS FERRAMENTAS EM HTML-->
     <section class="Nossas_Ferramentas_Home">
@@ -72,17 +72,11 @@
         </div>
 
         <div class="grupo_Ferramentas_Home">
+          {% for ferramenta in nossas_ferramentas %}
                 <div class="moldura_Ferramenta">
-                    <p class="title_MFerramentas1">Vídeos <span class="title_MFerramentas2">educativos</span> <br/><span class="subtitle_MFerramentas">Lorem ipsum dolor sit, amet.</span></p>
+                    <p class="title_MFerramentas1">{{ferramenta.normal}} <span class="title_MFerramentas2">{{ferramenta.destaque}}</span> <br/><span class="subtitle_MFerramentas">{{ ferramenta.descricao }}</span></p>
                 </div>
-
-                <div class="moldura_Ferramenta">
-                    <p class="title_MFerramentas1">Atividades <span class="title_MFerramentas2">criativas</span> <br/><span class="subtitle_MFerramentas">Lorem ipsum dolor sit, amet.</span></p>
-                </div>
-
-                <div class="moldura_Ferramenta">
-                    <p class="title_MFerramentas1">Jogos <span class="title_MFerramentas2">educacionais</span> <br/><span class="subtitle_MFerramentas">Lorem ipsum dolor sit, amet.</span></p>
-                </div>
+          {% endfor %}
         </div>
     </section>
 
@@ -95,7 +89,7 @@
         <div class="Img_Equipe">
           {% for membro in equipe %}
               <div class="profile_Equipe">
-                  <img src="{{ membro.foto.url }}" alt="{{ membro.nome }}"/>
+                  <img src="{{ membro.imagem.url }}" alt="{{ membro.nome }}"/>
       
                   <p class="title_DescProfile1">{{ membro.nome }}</p>
                   <center>
@@ -118,20 +112,12 @@
         </div>
 
         <div class="grupo_LeiaArtigos_Home">
+          {% for artigo in artigos %}
                 <div class="moldura_Artigos">
-                    <img src="{% static '/img/paste_forum/RetBook1.png' %}"alt="livros">
-                    <p class="subtitle_Artigos">Lorem ipsum dolor sit amet, consectetur.</p>
+                    <img src="{{ artigo.imagem.url }}"alt="livros">
+                    <p class="subtitle_Artigos">{{ artigo.titulo }}</p>
                 </div>
-
-                <div class="moldura_Artigos">
-                    <img src="{% static '/img/paste_forum/RetFamily2.png' %}"alt="familia">
-                    <p class="subtitle_Artigos">Lorem ipsum dolor sit amet, consectetur.</p>
-                </div>
-
-                <div class="moldura_Artigos">
-                    <img src="{% static '/img/paste_forum/RetPencil3.png' %}"alt="lapis">
-                    <p class="subtitle_Artigos">Lorem ipsum dolor sit amet, consectetur.</p>
-                </div>
+          {% endfor %}
         </div>
     </section>
 
@@ -140,9 +126,9 @@
         <div class="title_PlataformaVideos">
             <p>Nossa plataforma oferece vídeos <span class="highlight"> filtrados & <br> selecionados </span> exclusivamente para cuidar da <span class="highlight"> segurança</span> <br> das suas crianças </p>
         </div>
-        <div class="Subtitle_PlataformaVideos">
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus at mauris <br> quis magna aliquet condimentum.</p>
-        </div>
+        <div class="Subtitle_PlataformaVideos" style="text-align: center;">
+          <p>{{plataforma_videos.descricao|linebreaks}}</p>
+      </div>      
         <button class="btn">
             <a href="#" class="link-sem-sublinhado">Assistir agora</a>
             <div class="arrowRight"><img src="{% static 'assets/img/icon_Buttons/setting.svg' %}"/></div>
@@ -156,20 +142,12 @@
         </div>
 
         <div class="grupo_MApoio_Home">
+          {% for material in materiais_apoio %}
                 <div class="moldura_MApoio">
-                    <img src="{% static '/img/paste_MaterialApoio/MAPencil1.png' %}"alt="lapis">
-                    <p class="subtitle_MApoio"> Desenhos para colorir</p>
+                    <img src="{{material.imagem.url}}"alt="lapis">
+                    <p class="subtitle_MApoio">{{material.descricao}}</p>
                 </div>
-
-                <div class="moldura_MApoio">
-                    <img src="{% static '/img/paste_MaterialApoio/MAFamily2.png' %}"alt="familia">
-                    <p class="subtitle_MApoio">Cartões Didaticos</p>
-                </div>
-
-                <div class="moldura_MApoio">
-                    <img src="{% static '/img/paste_MaterialApoio/MAWork3.png' %}"alt="notebooks">
-                    <p class="subtitle_MApoio">Lorem ipsum dolor sit amet, consectetur</p>
-                </div>
+          {% endfor %}
         </div>
     </section>
 
@@ -179,7 +157,7 @@
             <p>Disponibilizamos jogos educacionais projetados para <span class="highlight2"> estimular o aprendizado</span><span> das crianças, promovendo o</span><span class="highlight2"> desenvolvimento cognitivo</span><span> e a </span><span class="highlight2">criatividade</span></p>
         </div>
         <div class="Subtitle_PlataformaJogos">
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus at mauris <br> quis magna aliquet condimentum.</p>
+            <p>{{plataforma_jogos.descricao|linebreaks}}</p>
         </div>
         <button class="btnJogos">
             <a href="#" class="link-sem-sublinhado2">Acessar jogos</a>
