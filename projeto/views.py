@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import Equipe, LegendaBanner, NossasFerramentas, Artigos, PlataformaVideos, MateriaisApoio, PlataformaJogos
+from .models import Equipe, LegendaBanner, NossasFerramentas, Artigos, PlataformaVideos, MateriaisApoio, PlataformaJogos, Contato, Informacoes
 
 def index(request):
     equipe = Equipe.objects.all()
@@ -9,6 +9,8 @@ def index(request):
     plataforma_videos = PlataformaVideos.objects.first()
     materiais_apoio = MateriaisApoio.objects.all()
     plataforma_jogos = PlataformaJogos.objects.first()
+    contato = Contato.objects.first()
+    informacoes = Informacoes.objects.all()
     
     context = {
         'equipe':equipe,
@@ -18,12 +20,11 @@ def index(request):
         'plataforma_videos': plataforma_videos,
         'materiais_apoio': materiais_apoio,
         'plataforma_jogos': plataforma_jogos,
+        'contato':contato,
+        'informacoes':informacoes,
     }
     
     return render(request, 'index.html', context)
-
-def home_view(request):
-    return render(request, 'home.html')
 
 def videos_view(request):
     return render(request, 'videos.html')

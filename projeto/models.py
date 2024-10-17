@@ -56,3 +56,13 @@ class PlataformaJogos(models.Model):
 
     def __str__(self):
         return "Plataforma de jogos digitais"
+
+# Modelo dos contatos
+class Contato(models.Model):
+    numero = models.CharField(max_length= 50, verbose_name= "Número")
+    email = models.CharField(max_length= 100, verbose_name= "Email")
+    endereco = models.TextField(verbose_name="Endereço")
+
+# Modelo das informações
+class Informacoes(models.Model):
+    descricao = models.CharField(max_length=50,verbose_name="Informação")
