@@ -6,9 +6,9 @@
         <meta charset="UTF-8">
         <meta name = "viewpoint" content="width=device-width,initial-scale=1.0"/>
             <title>Home</title>
-        <link rel="stylesheet" href="assets/css/home.css">
-        <link rel="stylesheet" href="assets/css/navbar.css">
-        <link rel="stylesheet" href="assets/css/footer.css">
+        <link rel="stylesheet" href="{% static 'css/home.css' %}">
+        <link rel="stylesheet" href="{% static 'css/navbar.css' %}">
+        <link rel="stylesheet" href="{% static 'css/footer.css' %}">
     </head>
 
     <body>
@@ -130,8 +130,8 @@
           <p>{{plataforma_videos.descricao|linebreaks}}</p>
       </div>      
         <button class="btn">
-            <a href="#" class="link-sem-sublinhado">Assistir agora</a>
-            <div class="arrowRight"><img src="{% static 'assets/img/icon_Buttons/setting.svg' %}"/></div>
+            <a href="{% url 'videos' %}" class="link-sem-sublinhado">Assistir agora</a>
+            <div class="arrowRight"><img src="{% static 'img/icon_Buttons/setting.svg' %}"/></div>
         </button>
     </section>
 
@@ -160,8 +160,8 @@
             <p>{{plataforma_jogos.descricao|linebreaks}}</p>
         </div>
         <button class="btnJogos">
-            <a href="#" class="link-sem-sublinhado2">Acessar jogos</a>
-            <div class="arrowRight_Jogos"><img src="{% static 'assets/img/icon_Buttons/Setting2.svg' %}"/></div>
+            <a href="{% url 'videos' %}" class="link-sem-sublinhado2">Acessar jogos</a>
+            <div class="arrowRight_Jogos"><img src="{% static 'img/icon_Buttons/Setting2.svg' %}"/></div>
         </button>
     </section>
 
@@ -183,16 +183,16 @@
             <address class="contatos">
               <p>
                 <a class="footer-link" href="tel:+55 21 99999-9999"
-                  >+55 21 99999-9999</a
+                  >{{contato.numero}}</a
                 >
                 <br />
                 <a class="footer-link" href="mailto:contato@sabidinhos.com"
-                  >contato@sabidinhos.com</a
+                  >{{contato.email}}</a
                 >
               </p>
               <p class="address">
                 <a class="footer-link" href="#"
-                  >Rua ali perto, 2000 - Candelária Rio Grande do Norte - RN</a
+                  >{{contato.endereco}}</a
                 >
               </p>
             </address>
@@ -218,14 +218,12 @@
   
           <div class="information-col">
             <p class="footer-heading">Informações</p>
+            {% for informacao in informacoes %}
             <ul class="information-nav">
-              <li><a class="footer-link" href="#">Exames Laboratoriais</a></li>
+              <li><a class="footer-link" href="#">{{informacao.descricao}}</a></li>
               <li>
-                <a class="footer-link" href="#">Consultas Veterinarias</a>
-              </li>
-              <li><a class="footer-link" href="#">Plano PET de sáude</a></li>
-              <li><a class="footer-link" href="#">Quem somos?</a></li>
             </ul>
+            {% endfor %}
           </div>
           <div class="copyright">
             <span>EJECT &copy; Alguns Direitos Reservados</span>
